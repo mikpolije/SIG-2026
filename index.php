@@ -56,7 +56,7 @@ require FCPATH . 'app/Config/Paths.php';
 
 $paths = new Paths();
 
-// LOAD THE FRAMEWORK BOOTSTRAP FILE
+// LOAD THE FRAMEWORK BOOTSTRAP FILEE
 require $paths->systemDirectory . '/Boot.php';
 
 exit(Boot::bootWeb($paths));
