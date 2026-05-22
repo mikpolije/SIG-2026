@@ -5,7 +5,7 @@ use Config\Paths;
 
 /*
  *---------------------------------------------------------------
- * CHECK PHP VERSION
+ * CHECK PHP VERSIO
  *---------------------------------------------------------------
  */
 
@@ -51,12 +51,12 @@ if (getcwd() . DIRECTORY_SEPARATOR !== FCPATH) {
 
 // LOAD OUR PATHS CONFIG FILE
 // This is the line that might need to be changed, depending on your folder structure.
-require FCPATH . '../app/Config/Paths.php';
-// ^^^ Change this line if you move your application folder
+require FCPATH . 'app/Config/Paths.php';
+// ^^^ Change this line if you move your application fold
 
 $paths = new Paths();
 
-// LOAD THE FRAMEWORK BOOTSTRAP FILE
+// LOAD THE FRAMEWORK BOOTSTRAP FILEE
 require $paths->systemDirectory . '/Boot.php';
 
 exit(Boot::bootWeb($paths));
