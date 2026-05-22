@@ -41,6 +41,7 @@ return array(
     'App\\Controllers\\Profile3' => $baseDir . '/app/Controllers/Profile3.php',
     'App\\Controllers\\Skriningdbd' => $baseDir . '/app/Controllers/Skriningdbd.php',
     'App\\Controllers\\SuperAdmin' => $baseDir . '/app/Controllers/SuperAdmin.php',
+    'App\\Controllers\\TanyaRora' => $baseDir . '/app/Controllers/TanyaRora.php',
     'App\\Controllers\\TentangKamiA' => $baseDir . '/app/Controllers/TentangKamiA.php',
     'App\\Controllers\\VideoDbd' => $baseDir . '/app/Controllers/VideoDbd.php',
     'App\\Controllers\\funfactpneumonia' => $baseDir . '/app/Controllers/funfactpneumonia.php',
