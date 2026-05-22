@@ -1,0 +1,379 @@
+<?php $this->setVar('penyakit', 'pneumonia'); ?>
+<?php 
+$this->setVar('show_footer_maskot', true);
+$this->setVar('footer_maskot', 'cynex.png');
+?>
+<?= $this->include('layout/header') ?>
+<!DOCTYPE html>
+<html>
+<head>
+<title>Pertanyaan Skrining</title>
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+body {
+    background: #ffffff;
+}
+
+/* STEP */
+.step-wrapper {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.step {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 38px;
+    height: 38px;
+    border-radius: 6px;
+    font-weight: 600;
+}
+.step-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 150px;
+}
+.step-item p {
+    margin-top: 8px;
+    font-size: 14px;
+}
+.step.active {
+    background: #009B9F;
+    color: white;
+}
+.step.inactive {
+    background: #00BBC2;
+    color: white;
+}
+.step-line {
+    width: 500px;
+    border-top: 2px dashed #00BBC2;
+    margin: 0 10px;
+    transform: translateY(-20px);
+}
+* {
+    font-family: 'Poppins', sans-serif;
+}
+/* CARD */
+.card-custom {
+    border-radius: 15px;
+    border: 2px solid #00BBC2;
+    background: #f1f3f5;
+    padding: 30px;
+    max-width: 900px;
+    margin: auto;
+}
+
+/* PERTANYAAN */
+.pertanyaan {
+    margin-bottom: 20px;
+}
+
+/* OPSI */
+.opsi-group {
+    display: flex;
+    justify-content: center;
+    gap: 50px;
+    margin-top: 8px;
+}
+.opsi {
+    border-radius: 15px;
+    padding: 10px 50px;
+    font-size: 15px;
+    cursor: pointer;
+    background: #fafafa;
+    color: #555;
+    border: none;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+}
+.opsi.active {
+    background: #00BBC2;
+    color: white;
+}
+
+/* BUTTON */
+.btn-kembali {
+    border: 2px solid #00BBC2;
+    color: #00BBC2;
+    border-radius: 12px;
+    height: 50px;
+    font-weight: 500;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.btn-kirim {
+    background: #00BBC2;
+    color: white;
+    border-radius: 12px;
+    height: 50px;
+    font-weight: 500;
+}
+
+/* PROGRESS */
+#progressText {
+    color: black;
+    font-weight: 500;
+    margin-bottom: 15px;
+}
+
+/* FOOTER */
+.footer {
+    background: #00BBC2;
+    color: white;
+    padding: 40px 0;
+    margin-top: 120px;
+}
+.footer a {
+    color: white;
+    text-decoration: none;
+}
+.logo-footer {
+    width: 60px;
+    height: 60px;
+    background: red;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: bold;
+}
+.pertanyaan label {
+    display: block;
+    text-align: center;
+    font-weight: 600;
+    font-size: 18px;
+    margin-bottom: 15px;
+}
+
+.footer-maskot{
+    width:250px !important;
+}
+</style>
+</head>
+
+<body>
+
+<!-- STEP -->
+<div class="step-wrapper mb-5">
+    <div class="step-item">
+        <span class="step inactive">1</span>
+        <p>Informasi Umum</p>
+    </div>
+
+    <div class="step-line"></div>
+
+    <div class="step-item">
+        <span class="step active">2</span>
+        <p>Pertanyaan Skrining</p>
+    </div>
+</div>
+
+<!-- CARD -->
+<div class="card-custom">
+
+<h5><b>Informasi Gejala Klinis</b></h5>
+<p class="mb-2">Sesuaikan dengan kondisi gejala yang dialami</p>
+
+<!-- PROGRESS -->
+<p id="progressText"></p>
+<div class="progress" style="height: 10px; border-radius: 10px;">
+    <div id="progressBar" class="progress-bar" role="progressbar" style="width: 0%; background:#00BBC2;"></div>
+</div>
+
+<form method="post" action="<?= base_url('pneumonia/skrining/step3') ?>">
+
+<!-- DATA HIDDEN -->
+<input type="hidden" name="nik" value="<?= $nik ?? '' ?>">
+<input type="hidden" name="nama" value="<?= $nama ?? '' ?>">
+<input type="hidden" name="jenis_kelamin" value="<?= $jenis_kelamin ?? '' ?>">
+<input type="hidden" name="tanggal_lahir" value="<?= $tanggal_lahir ?? '' ?>">
+<input type="hidden" name="kategori_usia" value="<?= $kategori_usia ?? '' ?>">
+<input type="hidden" name="telepon" value="<?= $telepon ?? '' ?>">
+<input type="hidden" name="provinsi" value="<?= $provinsi ?? '' ?>">
+<input type="hidden" name="kabupaten" value="<?= $kabupaten ?? '' ?>">
+<input type="hidden" name="kecamatan" value="<?= $kecamatan ?? '' ?>">
+<input type="hidden" name="kelurahan" value="<?= $kelurahan ?? '' ?>">
+<input type="hidden" name="provinsi_nama" value="<?= $provinsi_nama ?? '' ?>">
+<input type="hidden" name="kabupaten_nama" value="<?= $kabupaten_nama ?? '' ?>">
+<input type="hidden" name="kecamatan_nama" value="<?= $kecamatan_nama ?? '' ?>">
+<input type="hidden" name="kelurahan_nama" value="<?= $kelurahan_nama ?? '' ?>">
+<input type="hidden" name="rt_rw" value="<?= $rt_rw ?? '' ?>">
+
+<div class="container mt-4">
+
+<?php
+
+$pertanyaan = [
+    "Apakah Anda mengalami batuk dalam 7 hari terakhir?",
+    "Apakah Anda mengeluarkan dahak (sputum) saat batuk?",
+    "Apakah Anda mengalami sesak napas?",
+    "Apakah Anda merasakan nyeri dada saat bernapas atau batuk?",
+    "Apakah Anda mengalami mual atau muntah?",
+    "Apakah Anda merasa lemas?",
+    "Apakah nafsu makan Anda menurun?",
+    "Apakah Anda mengalami demam (≥38 derajat celcius)?",
+    "Apakah napas Anda terasa lebih cepat dari biasanya?",
+    "Apakah saat bernapas terdengar bunyi seperti mendengkur atau seperti ada dahak di dada?",
+    "Apakah saat Anda bernapas terdengar bunyi mengi (seperti siulan)?"
+];
+
+?>
+
+<?php foreach($pertanyaan as $index => $text): ?>
+<div class="pertanyaan step-form" data-step="<?= $index+1 ?>" style="display:none;">
+    
+    <label class="text-center w-100 d-block">
+        <b><?= $text ?></b>
+    </label>
+
+    <div class="opsi-group">
+        <button type="button" class="opsi" data-value="1">Iya</button>
+        <button type="button" class="opsi" data-value="0">Tidak</button>
+        <input type="hidden" name="p<?= $index+1 ?>" value="">
+    </div>
+
+</div>
+<?php endforeach; ?>
+
+<div class="d-flex gap-4 mt-5">
+    <button type="button" id="btnPrev" class="btn btn-kembali flex-fill">Kembali</button>
+    <button type="button" id="btnNext" class="btn btn-kirim flex-fill">Selanjutnya</button>
+</div>
+
+</div>
+</form>
+</div>
+
+<!-- FOOTER -->
+<script>
+document.addEventListener("DOMContentLoaded", function(){
+
+    const footerDesc = document.querySelector(".footer-desc");
+
+    if(footerDesc){
+
+        footerDesc.insertAdjacentHTML("afterend", `
+        
+            <div class="cynex-info mt-4">
+
+                <h3 style="
+                    color:#fff;
+                    font-weight:700;
+                    font-size:2rem;
+                    margin-bottom:12px;
+                    line-height:1;
+                ">
+                    CYNEX
+                </h3>
+
+                <p style="
+                    color:#E8FFFF;
+                    font-size:1.1rem;
+                    line-height:1.8;
+                    margin-bottom:0;
+                ">
+                    Clinical System for Next Experience
+                </p>
+
+            </div>
+
+        `);
+
+    }
+
+});
+</script>
+<?= $this->include('layout/footer') ?>
+
+<!-- SCRIPT OPSI -->
+<script>
+document.querySelectorAll('.opsi-group').forEach(group => {
+    const buttons = group.querySelectorAll('.opsi');
+    const input = group.querySelector('input');
+
+    buttons.forEach(btn => {
+        btn.addEventListener('click', () => {
+            buttons.forEach(b => b.classList.remove('active'));
+            btn.classList.add('active');
+            input.value = btn.getAttribute('data-value');
+        });
+    });
+});
+</script>
+
+<!-- SCRIPT STEP -->
+<script>
+let currentGroup = 1;
+const questionPerPage = 2;
+
+const steps = document.querySelectorAll('.step-form');
+const totalGroup = Math.ceil(steps.length / questionPerPage);
+
+const btnNext = document.getElementById('btnNext');
+const btnPrev = document.getElementById('btnPrev');
+const progressText = document.getElementById('progressText');
+
+function showGroup(group) {
+    steps.forEach((step, index) => {
+        step.style.display = 'none';
+
+        const start = (group - 1) * questionPerPage;
+        const end = start + questionPerPage;
+
+        if (index >= start && index < end) {
+            step.style.display = 'block';
+        }
+    });
+
+    btnPrev.style.display = group === 1 ? 'none' : 'block';
+    btnNext.textContent = (group === totalGroup) ? 'Kirim' : 'Selanjutnya';
+
+    progressText.textContent = group + " dari " + totalGroup;
+
+    let percent = (group / totalGroup) * 100;
+    document.getElementById('progressBar').style.width = percent + '%';
+}
+
+showGroup(currentGroup);
+
+btnNext.addEventListener('click', function () {
+    const start = (currentGroup - 1) * questionPerPage;
+    const end = start + questionPerPage;
+
+    let valid = true;
+
+    for (let i = start; i < end && i < steps.length; i++) {
+        const input = steps[i].querySelector('input');
+        if (input.value === "") {
+            valid = false;
+            break;
+        }
+    }
+
+    if (!valid) {
+        alert("Masih ada pertanyaan yang belum dijawab!");
+        return;
+    }
+
+    if (currentGroup < totalGroup) {
+        currentGroup++;
+        showGroup(currentGroup);
+    } else {
+        document.querySelector('form').submit();
+    }
+});
+
+btnPrev.addEventListener('click', function () {
+    if (currentGroup > 1) {
+        currentGroup--;
+        showGroup(currentGroup);
+    }
+});
+</script>
+
+</body>
+</html>
